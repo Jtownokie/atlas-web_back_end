@@ -1,5 +1,5 @@
 // Using rest parameters
 
 export default function returnHowManyArguments(...argsIn) {
-  return argsIn.length
+  return argsIn.length;
 }
