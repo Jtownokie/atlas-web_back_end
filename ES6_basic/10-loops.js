@@ -1,12 +1,11 @@
 // for of loop
 
 export default function appendToEachArrayValue(array, appendString) {
-  let index = 0;
+  const modifiedArray = [];
 
-  for (let value of array) {
-    array[index] = appendString + value;
-    index++;
+  for (const value of array) {
+    modifiedArray.push(appendString + value);
   }
 
-  return array;
+  return modifiedArray;
 }
