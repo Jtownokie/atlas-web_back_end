@@ -1,4 +1,4 @@
-// Showcasing the use cases for const vs. let variable declaration
+// Showcasing the use cases for const vs. let declaration
 
 export function taskFirst() {
   const task = 'I prefer const when I can.';
