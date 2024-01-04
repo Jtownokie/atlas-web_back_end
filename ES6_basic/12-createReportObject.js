@@ -9,8 +9,8 @@ export default function createReportObject(employeesList) {
       const numDepartments = Object.keys(employeesList).length;
 
       return numDepartments;
-    }
-  }
+    },
+  };
 
   return newObject;
 }
