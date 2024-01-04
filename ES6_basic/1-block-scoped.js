@@ -1,4 +1,6 @@
 // Modifying declarations to prevent overwrite
+/* exported task */
+/* exported task2 */
 
 export default function taskBlock(trueOrFalse) {
   var task = false;
