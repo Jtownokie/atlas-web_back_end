@@ -1,0 +1,6 @@
+node_modules/
+test_files/
+.eslintrc.js
+package-lock.json
+package.json
+babel.config.js
