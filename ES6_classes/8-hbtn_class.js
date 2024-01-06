@@ -11,6 +11,6 @@ export default class Airport {
   }
 
   valueOf() {
-    return this._size
+    return this._size;
   }
 }
