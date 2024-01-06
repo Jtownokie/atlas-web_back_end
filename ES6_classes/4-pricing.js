@@ -1,4 +1,5 @@
 // Using Class instantiation with other Classes
+/* eslint-disable no-unused-vars */
 import Currency from './3-currency';
 
 export default class Pricing {
