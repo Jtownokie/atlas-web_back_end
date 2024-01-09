@@ -10,7 +10,7 @@ export default function cleanSet(set, startString) {
 
   for (let element of set) {
     if (element.startsWith(startString)) {
-      resultString += startString === '' ? element : element.slice(startString.length) + '-';
+      resultString += element.slice(startString.length) + '-';
     }
   }
 
