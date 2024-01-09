@@ -9,7 +9,7 @@ export default function updateUniqueItems(map) {
     });
 
     return updatedMap;
-  } catch {
+  } catch (error) {
     throw new Error('Cannot process');
   }
 }
