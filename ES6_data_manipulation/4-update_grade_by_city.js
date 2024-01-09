@@ -8,8 +8,8 @@ export default function updateStudentGradeByCity(studentList, city, newGrades) {
 
     if (foundGrade) {
       return { ...studentObj, grade: foundGrade.grade };
-    } else {
-      return { ...studentObj, grade: 'N/A' };
     }
-  })
+
+    return { ...studentObj, grade: 'N/A' };
+  });
 }
