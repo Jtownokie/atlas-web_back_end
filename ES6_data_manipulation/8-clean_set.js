@@ -1,5 +1,6 @@
 // Clean Set function
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-useless-concat */
 
 export default function cleanSet(set, startString) {
   let resultString = '';
@@ -8,7 +9,7 @@ export default function cleanSet(set, startString) {
     return '';
   }
 
-  for (let element of set) {
+  for (const element of set) {
     if (element.startsWith(startString)) {
       resultString += element.slice(startString.length) + '-';
     }
