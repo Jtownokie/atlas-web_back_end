@@ -11,7 +11,7 @@ export default function cleanSet(set, startString) {
 
   for (const element of set) {
     if (element.startsWith(startString)) {
-      resultString += element.slice(startString.length) + '-';
+      resultString += `${element.slice(startString.length)}-`;
     }
   }
 
