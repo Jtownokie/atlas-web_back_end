@@ -4,13 +4,13 @@
 export default function cleanSet(set, startString) {
   let resultString = '';
 
-  if (!startString) {
+  if (!startString || typeof startString !== 'string') {
     return '';
   }
 
   for (let element of set) {
     if (element.startsWith(startString)) {
-      resultString += element.slice(startString.length) + '-';
+      resultString += startString === '' ? element : element.slice(startString.length) + '-';
     }
   }
 
