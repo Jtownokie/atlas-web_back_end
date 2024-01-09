@@ -2,7 +2,5 @@
 /* eslint-disable no-unused-vars */
 
 export default function hasValuesFromArray(set, array) {
-  return array.every((element, index, array) => {
-    return set.has(element);
-  });
+  return array.every((element, index, array) => set.has(element))
 }
