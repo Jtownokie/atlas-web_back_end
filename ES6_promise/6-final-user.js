@@ -5,7 +5,7 @@ import uploadPhoto from './5-photo-reject';
 export default function handleProfileSignup(firstName, lastName, fileName) {
   return Promise.all([
     signUpUser(firstName, lastName),
-    uploadPhoto(fileName).catch((error) => ({ status: 'rejected', value: error.message }))
+    uploadPhoto(fileName).catch((error) => ({ status: 'rejected', value: `Error: ${error.message}` }))
   ]).then(([signUpResult, uploadResult]) => {
     return [
       { status: 'fulfilled', value: { firstName: signUpResult.firstName, lastName: signUpResult.lastName } },
