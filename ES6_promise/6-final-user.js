@@ -1,4 +1,6 @@
 // Handling multiple promises
+/* eslint-disable arrow-body-style */
+/* eslint-disable comma-dangle */
 import signUpUser from './4-user-promise';
 import uploadPhoto from './5-photo-reject';
 
