@@ -12,7 +12,8 @@ async def measure_runtime() -> float:
     """ This coroutine measures runtime on async comprehension """
     start = time.perf_counter()
 
-    asyncio.gather(async_comprehension(), async_comprehension(), async_comprehension(), async_comprehension())
+    await asyncio.gather(async_comprehension(), async_comprehension(),
+                         async_comprehension(), async_comprehension())
 
     elapsed = time.perf_counter() - start
 
