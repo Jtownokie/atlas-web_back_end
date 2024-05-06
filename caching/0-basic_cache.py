@@ -4,6 +4,7 @@
 """
 BaseCaching = __import__('base_caching').BaseCaching
 
+
 class BasicCache(BaseCaching):
     """ BasicCache defines:
         - put(): Setter Type Method
@@ -11,7 +12,7 @@ class BasicCache(BaseCaching):
     """
 
     def __init__(self):
-        """ 
+        """
             Initiliaze
         """
         super().__init__()
