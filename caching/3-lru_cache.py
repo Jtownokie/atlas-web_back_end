@@ -19,17 +19,20 @@ class LRUCache(BaseCaching):
         super().__init__()
         self.cache_data = OrderedDict()
 
-    def put(self, key, value):
+    def put(self, key, item):
         """
             Add an item in the cache
         """
+        if key is None or item is None:
+            return
+
         if key in self.cache_data:
             self.cache_data.pop(key)
         elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             discarded_key, _ = self.cache_data.popitem(last=False)
             print(f"DISCARD: {discarded_key}")
 
-        self.cache_data[key] = value
+        self.cache_data[key] = item
 
     def get(self, key):
         """
