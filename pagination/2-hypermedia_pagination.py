@@ -55,8 +55,12 @@ class Server:
         hyper_dict['page_size'] = len(self.get_page(page, page_size))
         hyper_dict['page'] = page
         hyper_dict['data'] = self.get_page(page, page_size)
+        hyper_dict['total_pages'] = math.ceil(len(self.dataset()) / page_size)
 
-        if hyper_dict['page_size'] == 0:
+        if (
+            hyper_dict['page_size'] == 0 or
+            hyper_dict['page'] == hyper_dict['total_pages']
+        ):
             hyper_dict['next_page'] = None
         else:
             hyper_dict['next_page'] = page + 1
@@ -65,7 +69,5 @@ class Server:
             hyper_dict['prev_page'] = None
         else:
             hyper_dict['prev_page'] = page - 1
-
-        hyper_dict['total_pages'] = math.ceil(len(self.dataset()) / page_size)
 
         return hyper_dict
