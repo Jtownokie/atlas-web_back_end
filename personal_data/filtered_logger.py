@@ -3,7 +3,7 @@
     Filtered Logger Module
 """
 import re
-from typing import List
+import typing
 import logging
 
 
@@ -20,6 +20,7 @@ class RedactingFormatter(logging.Formatter):
         self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
+        """ Obfuscates Logging Message """
         original_message = super(RedactingFormatter, self).format(record)
         record_message = record.getMessage()
         filtered_message = filter_datum(self.fields,
@@ -29,7 +30,7 @@ class RedactingFormatter(logging.Formatter):
         return original_message.replace(record_message, filtered_message)
 
 
-def filter_datum(fields: List[str], redaction: str,
+def filter_datum(fields: typing.List[str], redaction: str,
                  message: str, separator: str) -> str:
     """ Filter Datum Method """
     for field in fields:
