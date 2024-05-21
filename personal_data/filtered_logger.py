@@ -64,6 +64,7 @@ def get_logger() -> logging.Logger:
 
 
 def get_db() -> mysql.connector.connection.MySQLConnection:
+    """ Returns Database Connection Point """
     connection = mysql.connector.connect(host=os.getenv
                                          ('PERSONAL_DATA_DB_HOST'),
                                          database=os.getenv
