@@ -39,7 +39,7 @@ def filter_datum(fields: typing.List[str], redaction: str,
                  message: str, separator: str) -> str:
     """ Filter Datum Method """
     for field in fields:
-        field_pattern = rf"({field}=)[^{separator}]*({separator})"
+        field_pattern = rf"({field}=)[^{separator}]*?({separator})"
         message = re.sub(field_pattern, rf"\1{redaction}\2", message)
 
     return message
@@ -51,12 +51,10 @@ def get_logger() -> logging.Logger:
     logger.setLevel(logging.INFO)
     logger.propagate = False
 
-    redacted_formatter = RedactingFormatter(PII_FIELDS)
-
-    formatter = logging.Formatter(redacted_formatter.format())
-
     stream_handler = logging.StreamHandler()
-    stream_handler.setFormatter(formatter)
+
+    redacted_formatter = RedactingFormatter(PII_FIELDS)
+    stream_handler.setFormatter(redacted_formatter)
 
     logger.addHandler(stream_handler)
 
@@ -74,3 +72,25 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
                                          password=os.getenv
                                          ('PERSONAL_DATA_DB_PASSWORD'))
     return connection
+
+
+def main():
+    """ Main Function Entry Point """
+    def row_formatter(row: typing.List[str]) -> str:
+        """" Formats SQL query data for logging """
+        return (f"name={row[0]};email={row[1]};phone={row[2]};ssn={row[3]};"
+                f"password={row[4]};ip={row[5]};last_login={row[6]};"
+                f"user_agent={row[7]};")
+
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("SELECT name, email, phone, ssn, password, ip, last_login, user_agent FROM users;")
+    for row in cursor:
+        formatted_row = row_formatter(row)
+        logger = get_logger()
+        logger.info(formatted_row)
+
+
+if __name__ == '__main__':
+    main()
