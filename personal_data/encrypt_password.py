@@ -6,6 +6,6 @@ import typing
 import bcrypt
 
 
-def hash_password(password: str) -> typing.ByteString:
+def hash_password(password: str) -> bytes:
     """ Returns a hashed, salted password """
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
