@@ -32,4 +32,4 @@ def unauthorized():
     Return:
       - abort
     """
-    return abort(401)
+    abort(401)
