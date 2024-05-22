@@ -85,7 +85,8 @@ def main():
     db = get_db()
     cursor = db.cursor()
 
-    cursor.execute("SELECT name, email, phone, ssn, password, ip, last_login, user_agent FROM users;")
+    cursor.execute("SELECT name, email, phone, ssn, password, ip,"
+                   "last_login, user_agent FROM users;")
     for row in cursor:
         formatted_row = row_formatter(row)
         logger = get_logger()
