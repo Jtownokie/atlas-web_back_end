@@ -17,20 +17,22 @@ auth = None
 if getenv("AUTH_TYPE") == "auth":
     auth = Auth()
 
+
 @app.before_request
 def before_request():
     """ Pre-Request Auth Check """
     if auth is None:
         return
-    if auth.require_auth(request.path, ['/api/v1/status/',
+    if not auth.require_auth(request.path, ['/api/v1/status/',
                                         '/api/v1/unauthorized/',
-                                        '/api/v1/forbidden/']) == True:
+                                        '/api/v1/forbidden/']):
         return
 
-    if auth.authorization_header(request) == None:
+    if auth.authorization_header(request) is None:
         abort(401)
-    if auth.current_user(request) == None:
+    if auth.current_user(request) is None:
         abort(403)
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:
