@@ -70,3 +70,5 @@ class BasicAuth(Auth):
                 return user
             else:
                 return None
+
+        return None
