@@ -65,11 +65,8 @@ class BasicAuth(Auth):
 
         for user in user_list:
             if user.email == user_email:
-                found_user = user
+                if not user.is_valid_password(user_pwd):
+                    return None
+                return user
             else:
                 return None
-
-        if not found_user.is_valid_password(user_pwd):
-            return None
-
-        return found_user
