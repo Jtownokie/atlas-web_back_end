@@ -2,6 +2,8 @@
 """ This module contains the SessionAuth class for Authentication """
 from api.v1.auth.auth import Auth
 import uuid
+from flask import request
+from os import getenv
 
 
 class SessionAuth(Auth):
@@ -25,3 +27,10 @@ class SessionAuth(Auth):
             return None
 
         return self.user_id_by_session_id.get(session_id)
+
+    def session_cookie(self, request=None):
+        """ This Method Returns a cookie value from a request """
+        if request is None:
+            return None
+
+        return request.cookies.get(f'{getenv("SESSION_NAME")}')
