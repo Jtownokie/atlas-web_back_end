@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ This module contains the SessionAuth class for Authentication """
 from api.v1.auth.auth import Auth
+from models.user import User
 import uuid
 from flask import request
 from os import getenv
@@ -27,3 +28,10 @@ class SessionAuth(Auth):
             return None
 
         return self.user_id_by_session_id.get(session_id)
+
+    def current_user(self, request=None):
+        """ Returns User Instance Based on Cookie Value """
+        session_id = self.session_cookie(request)
+        user_id = self.user_id_for_session_id(session_id)
+
+        return User.get(user_id)
