@@ -19,6 +19,19 @@ def app_start() -> str:
     return jsonify({"message": "Bienvenue"})
 
 
+@app.route('/profile', methods=['GET'], strict_slashes=False)
+def profile():
+    """ GET
+    Return:
+        - JSON
+    """
+    user = AUTH.get_user_from_session_id(request.cookies.get("session_id"))
+    if user is None:
+        abort(403)
+
+    return jsonify({"email": f"{user.email}"}), 200
+
+
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def users():
     """ POST
