@@ -4,6 +4,7 @@ Route module for Basic Flask App
 """
 from flask import Flask, jsonify, abort, request, make_response, redirect
 from auth import Auth
+from sqlalchemy.orm.exc import NoResultFound
 
 
 app = Flask(__name__)
@@ -68,6 +69,23 @@ def login():
     response.set_cookie("session_id", session_id)
 
     return response
+
+
+@app.route('/reset_password', methods=['POST'], strict_slashes=False)
+def get_reset_password_token():
+    """ POST
+    Return:
+        - None
+    """
+    user_email = request.form.get("email")
+    try:
+        user = AUTH._db.find_user_by(email=user_email)
+        reset_token = AUTH.get_reset_password_token(user_email)
+        return jsonify(
+            {"email": f"{user.email}", "reset_token": f"{reset_token}"}
+        ), 200
+    except NoResultFound:
+        abort(403)
 
 
 @app.route('/sessions', methods=['DELETE'], strict_slashes=False)
