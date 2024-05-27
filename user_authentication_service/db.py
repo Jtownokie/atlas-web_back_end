@@ -53,7 +53,7 @@ class DB:
 
         return user
 
-    def update_user(self, user_id: str, **kwargs) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """ Updates User Columns """
         user = self.find_user_by(id=user_id)
         for key, value in kwargs.items():
