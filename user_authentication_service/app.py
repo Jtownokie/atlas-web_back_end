@@ -49,7 +49,7 @@ def login():
 
     session_id = AUTH.create_session(user_email)
 
-    response = make_response(jsonify({f"{user_email}": "logged in"}))
+    response = make_response(jsonify({"email": f"{user_email}", "message": "logged in"}))
     response.set_cookie("session_id", session_id)
 
     return response
