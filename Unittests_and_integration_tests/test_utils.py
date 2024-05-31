@@ -51,6 +51,7 @@ class TestMemoize(unittest.TestCase):
     """ This class tests the memoize decorator """
 
     def test_memoize(self):
+        """ Tests the memoized wrapper """
         class TestClass:
             """ For testing memoize decorator"""
             def a_method(self):
