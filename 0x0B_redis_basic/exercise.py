@@ -17,13 +17,16 @@ class Cache():
         self._redis.set(id, data)
         return id
 
-    def get(self, key: str, fn: Callable):
+    def get(self, key: str, fn: Callable = None):
         """ Retrieves byte string from Database """
         data = self._redis.get(key)
         if data is None:
             return None
 
-        return fn(data)
+        if fn:
+            return fn(data)
+        else:
+            return data
 
     def get_str(self, data: bytes) -> str:
         """ Decodes byte string data to str """
