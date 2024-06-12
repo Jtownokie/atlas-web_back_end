@@ -61,3 +61,20 @@ class Cache():
     def get_int(self, data: bytes) -> int:
         """ Decodes byte string data to int """
         return int.from_bytes(data, "big")
+
+
+def replay(method: Callable):
+    """ This method provides information on call count and call history """
+    self = method.__self__
+    qualname = method.__qualname__
+
+    input_key = qualname + ":inputs"
+    output_key = qualname + ":outputs"
+
+    inputs = self._redis.lrange(input_key, 0, -1)
+    outputs = self._redis.lrange(output_key, 0, -1)
+
+    print(f"{qualname} was called {len(inputs)} times:")
+    for i, (input_, output) in enumerate(zip(inputs, outputs)):
+        print(f"{qualname}(*{input_.decode('utf-8')})"
+              f" -> {output.decode('utf-8')}")
