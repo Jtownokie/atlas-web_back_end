@@ -7,6 +7,7 @@ from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
+    """ Counts number of calls of method """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         key = method.__qualname__
@@ -16,6 +17,7 @@ def count_calls(method: Callable) -> Callable:
 
 
 def call_history(method: Callable) -> Callable:
+    """ Keeps Call History of wrapped method """
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         input_key = method.__qualname__ + ":inputs"
