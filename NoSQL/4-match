@@ -1,0 +1,2 @@
+// Find Specific Data
+db.school.find( { name: "Holberton school" } )
