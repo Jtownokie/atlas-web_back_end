@@ -1,10 +1,11 @@
-// Task 2 Script
-import fs from 'fs';
+// Task 3 Script
+import { promises as fs } from 'fs';
 import { parse } from 'csv-parse';
 
-export default function countStudents(path) {
+export default async function countStudents(path) {
   try {
-    fs.readFile(path, (err, fileData) => {
+    const fileData = await fs.readFile(path, 'utf8');
+    return new Promise((resolve) => {
       parse(fileData, { columns: false, trim: true }, (err, rows) => {
         const numStudents = rows.length - 1;
         let numStudentsInCS = 0;
@@ -25,6 +26,8 @@ export default function countStudents(path) {
         console.log(`Number of students: ${numStudents}`);
         console.log(`Number of students in CS: ${numStudentsInCS}. List: ${firstNamesCS.join(', ')}`);
         console.log(`Number of students in SWE: ${numStudentsInSWE}. List: ${firstNamesSWE.join(', ')}`);
+
+        resolve();
       });
     });
   } catch (err) {
