@@ -23,11 +23,12 @@ export default async function countStudents(path) {
           }
         }
 
-        console.log(`Number of students: ${numStudents}`);
-        console.log(`Number of students in CS: ${numStudentsInCS}. List: ${firstNamesCS.join(', ')}`);
-        console.log(`Number of students in SWE: ${numStudentsInSWE}. List: ${firstNamesSWE.join(', ')}`);
+        let output = `Number of students: ${numStudents}\n`;
+        output += `Number of students in CS: ${numStudentsInCS}. List: ${firstNamesCS.join(', ')}\n`;
+        output += `Number of students in SWE: ${numStudentsInSWE}. List: ${firstNamesSWE.join(', ')}`;
+        console.log(output);
 
-        resolve();
+        resolve(output);
       });
     });
   } catch (err) {
