@@ -1,5 +1,5 @@
 // Students Controller
-import readDatabase from "../utils.js"
+import readDatabase from '../utils.js';
 
 class StudentsController {
   static async getAllStudents(req, res) {
@@ -10,9 +10,9 @@ class StudentsController {
       output += `Number of students in CS: ${studentsObject.firstNamesCS.length}. List: ${studentsObject.firstNamesCS.join(', ')}\n`;
       output += `Number of students in SWE: ${studentsObject.firstNamesSWE.length}. List: ${studentsObject.firstNamesSWE.join(', ')}`;
 
-      res.status(200).send(output);
+      return res.status(200).send(output);
     } catch (err) {
-      res.status(500).send('Cannot load the database');
+      return res.status(500).send('Cannot load the database');
     }
   }
 
@@ -31,9 +31,9 @@ class StudentsController {
         return res.status(500).send('Major parameter must be CS or SWE');
       }
 
-      res.status(200).send(output);
+      return res.status(200).send(output);
     } catch (err) {
-      res.status(500).send('Cannot load the database');
+      return res.status(500).send('Cannot load the database');
     }
   }
 }
