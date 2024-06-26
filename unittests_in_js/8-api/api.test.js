@@ -12,7 +12,7 @@ describe('Basic API Integration Testing', () => {
   });
   it('Returns the correct data', () => {
     request(url, (error, response, body) => {
-      expect(body).to.equal('Welcome to the payment system')
+      expect(body).to.deep.equal('Welcome to the payment system')
     });
   });
 });
