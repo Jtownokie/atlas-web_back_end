@@ -1,6 +1,6 @@
 // Task 1 Tests
 const { expect } = require('chai')
-const calculateNumber = require('./1-calcul')
+const calculateNumber = require('./2-calcul_chai')
 
 describe('test_group_sum', () => {
   it('returns the calculation type result (sum) of its rounded arguments', () => {
