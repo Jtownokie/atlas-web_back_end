@@ -1,4 +1,4 @@
-// Task 3 Testing
+// Task 4 Testing
 const { expect } = require('chai');
 const sinon = require('sinon');
 const sendPaymentRequestToApi = require('./4-payment');

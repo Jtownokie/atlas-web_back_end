@@ -1,4 +1,4 @@
-// Task 4 Script
+// Task 5 Script
 const Utils = require('./utils')
 
 function sendPaymentRequestToApi(totalAmount, totalShipping) {
